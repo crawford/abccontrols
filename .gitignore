@@ -1,0 +1,9 @@
+*.suo
+*.csproj.user
+*.Debug.cachefile
+*.Release.cachefile
+bin/
+Bin/
+obj/
+PerformanceLogs/
+SubmissionInfo/
