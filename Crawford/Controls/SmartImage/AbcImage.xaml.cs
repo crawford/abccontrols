@@ -6,17 +6,29 @@ using System.Windows.Media.Imaging;
 
 namespace Crawford.Controls
 {
-    public partial class SmartImage : UserControl
+    public partial class AbcImage : UserControl
     {
-        public SmartImage()
+        public AbcImage()
         {
             InitializeComponent();
+            var b = this;
+            _image.ImageFailed += (sender, e) =>
+            {
+                var a = 0;
+            };
+            _image.ImageOpened += (sender, e) =>
+            {
+                OnLoadOverride(((Image)sender).Source);
+            };
         }
+
+        virtual public void OnLoadOverride(ImageSource b) { }
 
         protected override Size MeasureOverride(Size availableSize)
         {
             double origWidth = (Double)GetValue(OriginalWidthProperty);
             double origHeight = (Double)GetValue(OriginalHeightProperty);
+
             Size desired = new Size(origWidth, origHeight);
 
             if (origWidth > availableSize.Width)
@@ -39,10 +51,10 @@ namespace Crawford.Controls
 
         #region Properties
 
-        public static readonly DependencyProperty OriginalHeightProperty = DependencyProperty.Register("OriginalHeight", typeof(Double), typeof(SmartImage), null);
-        public static readonly DependencyProperty OriginalWidthProperty = DependencyProperty.Register("OriginalWidth", typeof(Double), typeof(SmartImage), null);
-        public static readonly DependencyProperty SourceProperty = DependencyProperty.Register("Source", typeof(ImageSource), typeof(SmartImage), new PropertyMetadata(OnSourceChanged));
-        public static readonly DependencyProperty StretchProperty = DependencyProperty.Register("Stretch", typeof(Stretch), typeof(SmartImage), new PropertyMetadata(OnStretchChanged));
+        public static readonly DependencyProperty OriginalHeightProperty = DependencyProperty.Register("OriginalHeight", typeof(Double), typeof(AbcImage), null);
+        public static readonly DependencyProperty OriginalWidthProperty = DependencyProperty.Register("OriginalWidth", typeof(Double), typeof(AbcImage), null);
+        public static readonly DependencyProperty SourceProperty = DependencyProperty.Register("Source", typeof(ImageSource), typeof(AbcImage), new PropertyMetadata(OnSourceChanged));
+        public static readonly DependencyProperty StretchProperty = DependencyProperty.Register("Stretch", typeof(Stretch), typeof(AbcImage), new PropertyMetadata(OnStretchChanged));
 
         public Double OriginalHeight
         {
@@ -97,12 +109,12 @@ namespace Crawford.Controls
 
         public static void OnSourceChanged(DependencyObject sender, DependencyPropertyChangedEventArgs e)
         {
-            ((SmartImage)sender).Source = (ImageSource)e.NewValue;
+            ((AbcImage)sender).Source = (ImageSource)e.NewValue;
         }
 
         public static void OnStretchChanged(DependencyObject sender, DependencyPropertyChangedEventArgs e)
         {
-            ((SmartImage)sender).Stretch = (Stretch)e.NewValue;
+            ((AbcImage)sender).Stretch = (Stretch)e.NewValue;
         }
 
         #endregion

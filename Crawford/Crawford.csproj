@@ -54,14 +54,14 @@
     <Compile Include="Controls\Common\ExifReader.cs" />
     <Compile Include="Controls\Common\ExifTags.cs" />
     <Compile Include="Controls\Common\NumericExtensions.cs" />
-    <Compile Include="Controls\SmartImage\SmartImage.xaml.cs">
-      <DependentUpon>SmartImage.xaml</DependentUpon>
+    <Compile Include="Controls\SmartImage\AbcImage.xaml.cs">
+      <DependentUpon>AbcImage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Controls\StaggerPanel\StaggerPanel.cs" />
+    <Compile Include="Controls\StaggerPanel\AbcStaggerPanel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Page Include="Controls\SmartImage\SmartImage.xaml">
+    <Page Include="Controls\SmartImage\AbcImage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
